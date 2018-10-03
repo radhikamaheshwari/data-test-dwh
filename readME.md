@@ -17,7 +17,7 @@ It contains information for each of our products (ids, descriptions, categories.
 
 Our tables are organised in datasets (folders), _eg._ `final`, `raw`, `tmp`.
 
-The __products__ table is created from a sucession of dependent SQL scripts. The process is as follows:
+The __products__ table is created from a chain of dependent SQL scripts. The process is as follows:
 
 1. Dump the e-commerce databases into a raw dataset (`raw` folder)
 2. Clean and consolidate the data on top of these raw tables using SQL scripts stored in the `tmp` folder. For instance, the result of the `tmp/inventory_items.sql` script will be stored in the `tmp.inventory_items` table.
@@ -25,20 +25,20 @@ The __products__ table is created from a sucession of dependent SQL scripts. The
 
 ## Your task
 
-Your task is to build parts of the tool that will orchestrate the aforementioned process, for the creation of the `final.products` table:
+Your task is to build parts of the tool that will orchestrate the aforementioned process, in order to create the `final.products` table:
 
 1. Write a function that shows the dependencies between all the sql scripts (from scratch, no specialized library!) _eg._ showing that `tmp/item_purchase_prices.sql` depends on `raw.purchase_line_items` and `raw.purchase_items`.
-We are expecting some kind of visualization (graph, tree, ...) 
+We are expecting some kind of simple visualization (graph, tree, ...) 
 
 2. Write a function that, using the previous question, runs the sql scripts in the correct order. Please provide documentation as of how you are proceeding.
 
 *Going further, we would like to parallelize the execution of few of these scripts. If you think of the dependencies as a tree: scripts from different nodes can work simultaneously, but, still, must not be executed before its children's tasks are done.*
 
-3. Write a function that paralellize the execution of the SQL, ensuring they respect their dependencies. Please provide documentation as of how you are proceeding.
+3. Write a function that paralellizes the execution of the SQL scripts, ensuring they respect their dependencies. Please provide documentation as of how you are proceeding.
 
 
 
-Notes:
+## Notes
 
 
 *The files in the `raw` folder represents the available raw data tables in the `raw` dataset.
@@ -47,7 +47,7 @@ Notes:
 *For point 1, parsing the query will be necessary. We can assume the shape of the tables in the scripts will always be `dataset_name.table_name`
 
 
-*Sample of task function (in go):
+*You can use the following dummy function as a placeholder for the function actually running the sql scripts (in go):
 
 ```go
 func() {
@@ -55,4 +55,4 @@ func() {
  time.Sleep(time.Second * 3)
 }
 ```
- You can use this dummy function as a placeholder for the function actually running the sql scripts.
+ 
