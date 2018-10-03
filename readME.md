@@ -7,7 +7,7 @@ You can write your code in the language of your choice. But we have preferences 
 - NodeJS
 
 Please organise, document and write some tests.
-Also precise if a specific setup is required to make your code run.
+Please also inform on any specific setup which is required to make your code run.
 
 ## Context
 
