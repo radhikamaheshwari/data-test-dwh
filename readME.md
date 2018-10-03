@@ -1,4 +1,4 @@
-# Data Warehouse Architect Position at Sephora
+# Data Warehouse Architect Position at Sephora SEA
 
 You can write your code in the language of your choice. But we have preferences for the language of our stack:
 
@@ -10,17 +10,25 @@ Please organise, document and write some tests.
 Also precise if a specific setup is required to make your code run.
 
 ## Context
-At Sephora SEA, we are building business schemas on top of the ecommerce databases.
-For instance, we have a products table which is the consolidation of 30 different tables from the databases and contains the information for each product. This clean schema is created from a bunch of dependent SQL scripts and is used accross the company.
 
-- We are pulling tables from the ecommerce databases and are pushing the exact copy to a raw dataset. (raw folder)
-- We are cleaning and consolidating the data on top of the raw tables using SQL scripts stored in the tmp folder. The result of the tmp.inventory_items.sql script will be stored in the tmp.inventory_items table.
-- The products tables in the (from the final.products.sql script) is the final clean table created.
+At Sephora SEA, we are building business schemas on top of the e-commerce databases.
+For instance, we have a __products__ table which is a consolidation of 30 other tables.
+It contains information for each of our products (ids, descriptions, categories...).
 
-## Data structure
+Our tables are organised in datasets (folders), _eg._ `final`, `raw`, `tmp`
 
-1. Write a clean structure (from scratch, no external library!) that show the dependencies between all the scripts.
-2. How would you run the scripts in order? Code it and test it.
+This clean schema is created from a bunch of dependent SQL scripts which execution is the following:
+
+1. Pull tables from the e-commerce databases and are push the exact copies to a raw dataset (`raw` folder)
+2. Clean and consolidate the data on top of these raw tables using SQL scripts stored in the `tmp` folder. For instance, the result of the `tmp/inventory_items.sql` script will be stored in the `tmp/inventory_items` table.
+3. Create the final products table (from the `final/products.sql` script)
+
+## Your task
+
+Your task is to code the aforementioned process, for the `final/products` table:
+
+1. Write a clean structure (from scratch, no external library!) that shows the dependencies between all the sql scripts
+2. How would you run the scripts in order? Code it and test it
 
 *Going further, we would like to parallelize the execution of few of these scripts. If you think of the dependencies as a tree: scripts from different nodes can work simultaneously, but, still, must not be executed before its children's tasks are done.*
 
