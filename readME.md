@@ -6,7 +6,7 @@ You can write your code in the language of your choice. But we have preferences 
 - Python
 - NodeJS
 
-Please organise, document and write some tests.
+Please organise your code, document it and write relevant unit tests.
 Please also inform on any specific setup which is required to make your code run.
 
 ## Context
@@ -15,31 +15,44 @@ At Sephora SEA, we are building business schemas on top of the e-commerce databa
 For instance, we have a __products__ table which is a consolidation of 30 other tables.
 It contains information for each of our products (ids, descriptions, categories...).
 
-Our tables are organised in datasets (folders), _eg._ `final`, `raw`, `tmp`
+Our tables are organised in datasets (folders), _eg._ `final`, `raw`, `tmp`.
 
-This clean schema is created from a bunch of dependent SQL scripts which execution is the following:
+The __products__ table is created from a sucession of dependent SQL scripts. The process is as follows:
 
-1. Pull tables from the e-commerce databases and are push the exact copies to a raw dataset (`raw` folder)
-2. Clean and consolidate the data on top of these raw tables using SQL scripts stored in the `tmp` folder. For instance, the result of the `tmp/inventory_items.sql` script will be stored in the `tmp/inventory_items` table.
-3. Create the final products table (from the `final/products.sql` script)
+1. Dump the e-commerce databases into a raw dataset (`raw` folder)
+2. Clean and consolidate the data on top of these raw tables using SQL scripts stored in the `tmp` folder. For instance, the result of the `tmp/inventory_items.sql` script will be stored in the `tmp.inventory_items` table.
+3. Create the `final.products` table (from the `final/products.sql` script)
 
 ## Your task
 
-Your task is to code the aforementioned process, for the `final/products` table:
+Your task is to build parts of the tool that will orchestrate the aforementioned process, for the creation of the `final.products` table:
 
-1. Write a clean structure (from scratch, no external library!) that shows the dependencies between all the sql scripts
-2. How would you run the scripts in order? Code it and test it
+1. Write a function that shows the dependencies between all the sql scripts (from scratch, no specialized library!) _eg._ showing that `tmp/item_purchase_prices.sql` depends on `raw.purchase_line_items` and `raw.purchase_items`.
+We are expecting some kind of visualization (graph, tree, ...) 
+
+2. Write a function that, using the previous question, runs the sql scripts in the correct order. Please provide documentation as of how you are proceeding.
 
 *Going further, we would like to parallelize the execution of few of these scripts. If you think of the dependencies as a tree: scripts from different nodes can work simultaneously, but, still, must not be executed before its children's tasks are done.*
 
-3. If you had to parallelize these tasks' executions, how would you do that?
-4. Apply on your structure, and test it
+3. Write a function that paralellize the execution of the SQL, ensuring they respect their dependencies. Please provide documentation as of how you are proceeding.
 
-*Sample of task function (in js):
 
-```js
-function tmp_inventory_items (callback){
-    // This is execution time of the tmp.inventory_items script
-    setTimeout(callback, parseInt(1000 * Math.random()));
+
+Notes:
+
+
+*The files in the `raw` folder represents the available raw data tables in the `raw` dataset.
+
+
+*For point 1, parsing the query will be necessary. We can assume the shape of the tables in the scripts will always be `dataset_name.table_name`
+
+
+*Sample of task function (in go):
+
+```go
+func() {
+ // This is execution time of the tmp.inventory_items script
+ time.Sleep(time.Second * 3)
 }
 ```
+ You can use this dummy function as a placeholder for the function actually running the sql scripts.
