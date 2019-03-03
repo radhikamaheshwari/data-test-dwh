@@ -1,4 +1,7 @@
-
+### Dependancy MacOS:
+brew install graphviz
+### Dependancy Ubuntu:
+  sudo apt-get install graphviz
 
 ## Task
 
@@ -9,10 +12,7 @@ To build parts of the tool that will orchestrate the aforementioned process, in 
 
 For giving a better visual representation `graphviz` has been used :
 pip install graphviz
-### MacOS:
-brew install graphviz
-### Ubuntu:
-  sudo apt-get install graphviz
+
 
 2. Write a function that, using the previous question, runs the sql scripts in the correct order. Please provide documentation as of how you are proceeding.
 
