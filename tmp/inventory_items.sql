@@ -2,4 +2,4 @@ SELECT
     sku_id,
     inventory_count
 FROM 
-    `raw.inventory_items`
+    `raw_inventory_items`
