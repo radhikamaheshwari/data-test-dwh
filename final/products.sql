@@ -9,8 +9,8 @@ WITH product_variants AS (
             v.urls AS images,
             v.inventoryCount
         ) AS variant
-    FROM `tmp.products` AS p
-    LEFT JOIN `tmp.variants` v ON p.productId = v.variantId
+    FROM `tmp_products` AS p
+    LEFT JOIN `tmp_variants` v ON p.productId = v.variantId
 )
 
 SELECT
