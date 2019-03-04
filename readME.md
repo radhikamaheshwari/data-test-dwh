@@ -3,12 +3,21 @@ brew install graphviz
 ### Dependancy Ubuntu:
   sudo apt-get install graphviz
 
-## Task
+
+### How to run:
+1. If you'd want just to see the dependency of the scripts, just run the `visualize_dag.py` as below:
+python visualize_dag.py
+
+2. If you'd want also want to run the sql scripts based on their dependencies, run the `spark_execute` file as below:
+python spark_execute.py
+
+
+## Task Explaination
 
 To build parts of the tool that will orchestrate the aforementioned process, in order to create the `final.products` table:
 
 
-1. Created a file which implements functionality of parsing all files and creates edges for the directed acyclic graph. Topological sort is implemented which gives one of the possible orders in which all files must be visited in-order. Graph for dependancy is generated in a new directory `Output`. 
+1. Created a file which implements functionality of parsing all files and creates edges for the directed acyclic graph. Topological sort is implemented which gives one of the possible orders in which all files must be visited in-order(printed on console). Graph for dependancy is generated in a new directory `Output`. Refer to the `.pdf` file generated to see the graph generated based on the dependencies.
 
 For giving a better visual representation `graphviz` has been used :
 pip install graphviz
