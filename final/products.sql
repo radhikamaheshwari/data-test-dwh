@@ -1,25 +1,25 @@
-WITH product_variants AS (
-    SELECT
-        p.productId,
-        p.categories,
-        p.urls AS images
-        STRUCT(
-            v.skuId,
-            v.purchasePrices,
-            v.urls AS images,
-            v.inventoryCount
-        ) AS variant
-    FROM `tmp_products` AS p
-    LEFT JOIN `tmp_variants` v ON p.productId = v.variantId
-)
-
+create table if not exists final_products as
+(
 SELECT
     productId,
     categories,
     images,
-    ARRAY_AGG(
+    collect_list(
         variant
     ) AS variants
-FROM 
-    product_variants
-GROUP BY 1, 2, 3
+FROM
+    (
+    SELECT
+        p.productId,
+        p.categories,
+        p.urls AS images,
+        struct(
+            v.skuId,
+            v.purchasePrices,
+            v.urls,
+            v.inventoryCount
+        ) AS variant
+    FROM `tmp_products` AS p
+    LEFT JOIN `tmp_variants` v ON p.productId = v.skuId
+)
+GROUP BY 1, 2, 3)
