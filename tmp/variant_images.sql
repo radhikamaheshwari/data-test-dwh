@@ -1,8 +1,9 @@
-SELECT
+create table if not exists tmp_variant_images AS
+(SELECT
     v.id AS sku_id,
-    ARRAY_AGG(
+    collect_list(
         p.url
     ) AS urls
 FROM `raw_variants` v
-LEFT JOIN `raw_pictures` p ON (v.id, 'variant') = (p.external_id, p.type)
-GROUP BY 1
+LEFT JOIN `raw_pictures` p ON v.id = p.external_id
+GROUP BY 1)
