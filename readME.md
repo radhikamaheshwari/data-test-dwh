@@ -24,8 +24,13 @@ Apache Spark is an open-source distributed general-purpose cluster-computing fra
 https://spark.apache.org/
 
 a) The empty datasets in the `raw` folder are given a schema to be used at the time of creating dataframe.
+
 b) All the files in `raw` folder are used to create dataframes with a suffix `raw_[DATASET_NAME]`.
+
 c) Modified the contents of the `.sql` files to be compatible with the sparksql standards.
+
 d) The ordered list/dag calculated in the step 1 is passed as a list to the spark_execute.py file. The code then creates a table for each `.sql` files under `tmp` with the suffix `tmp_[FILE_NAME]. For the Sql scripts dependent on the `raw_` as well as `tmp_` tables the ordered list passed from test.py makes sure these sql scripts are executed after the parent scripts have been executed.
+
 e) At last the `final/products.sql` is called with creates a table with name `final_products`. 
+
 f) The user can query this final table for end result.
