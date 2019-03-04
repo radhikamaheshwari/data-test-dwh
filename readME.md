@@ -1,17 +1,19 @@
 ### Dependancy MacOS:
-brew install graphviz
+  `brew install graphviz`
 ### Dependancy Ubuntu:
-  sudo apt-get install graphviz
-
+  `sudo apt-get install graphviz`
+`Python 2.7`
 
 ### How to run:
+
+
 1. If you'd want just to see the dependency of the scripts, just run the `visualize_dag.py` as below:
 
-python visualize_dag.py
+  `python visualize_dag.py`
 
 2. If you'd want also want to run the sql scripts based on their dependencies, run the `spark_execute` file as below:
 
-python spark_execute.py
+  `python spark_execute.py`
 
 
 ## Task Explaination
